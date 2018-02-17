@@ -3,6 +3,7 @@ from sklearn import svm
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.neighbors import KNeighborsClassifier
 
 import numpy as np
 
@@ -40,16 +41,12 @@ def run(classifier, name):
     '''
     # Load the training data
     train_inputs, train_outputs, test_inputs, test_outputs = load_data()
-    # print "Training data loaded."
 
-    # print "Beginning model training."
     # Train the decision tree classifier
     classifier.fit(train_inputs, train_outputs)
-    # print "Model training completed."
 
     # Use the trained classifier to make predictions on the test data
     predictions = classifier.predict(test_inputs)
-    # print "Predictions on testing data computed."
 
     # Print the accuracy (percentage of phishing websites correctly predicted)
     accuracy = 100.0 * accuracy_score(test_outputs, predictions)
@@ -100,6 +97,10 @@ if __name__ == '__main__':
     print "Worst classifier for detecting phishing websites."
     classifier = svm.OneClassSVM()
     run(classifier, "One Class SVM")
+
+    # print "K nearest neighbours algorithm."
+    # nbrs = KNeighborsClassifier(n_neighbors=5, algorithm='ball_tree')
+    # run(nbrs, "K nearest neighbours")
 
     # Gradient boosting classifier
     # classifier = GradientBoostingClassifier()
