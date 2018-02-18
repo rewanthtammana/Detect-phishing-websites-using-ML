@@ -5,8 +5,10 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
+from utils import generate_data_set
 
 import numpy as np
+import sys
 
 def load_data():
     '''
@@ -100,3 +102,19 @@ if __name__ == '__main__':
     # Gradient boosting classifier
     # classifier = GradientBoostingClassifier()
     # run(classifier, "GradientBoostingClassifier")
+
+    # Take user input and check whether its phishing URL or not.
+    if len(sys.argv) > 1:
+        data_set = generate_data_set(sys.argv[1])
+
+        # Reshape the array
+        data_set = np.array(data_set).reshape(1, -1)
+
+        # Load the date
+        train_inputs, test_inputs,train_outputs, test_outputs = load_data()
+
+        # Create and train the classifier
+        classifier = RandomForestClassifier(n_estimators=500, max_depth=15, max_leaf_nodes=10000)
+        classifier.fit(train_inputs, train_outputs)
+
+        print classifier.predict(data_set)
