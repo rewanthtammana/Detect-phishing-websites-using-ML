@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
 
 import numpy as np
 
@@ -24,13 +25,7 @@ def load_data():
     # Split 80% for traning and 20% testing
     boundary = int(0.8*len(inputs))
 
-    # Classify the inputs and outputs into training and testing sets
-    training_inputs = inputs[:boundary]
-    training_outputs = outputs[:boundary]
-    testing_inputs = inputs[boundary:]
-    testing_outputs = outputs[boundary:]
-
-    # print("Size = " + str(len(training_inputs)) + " .. " + str(training_data.shape) + " :: " + str(len(inputs)) + " -- " + str(len(outputs)) + " [[ ]] " + str(len(testing_outputs)) )
+    training_inputs, training_outputs, testing_inputs, testing_outputs = train_test_split(inputs, outputs, test_size=0.33)
 
     # Return the four arrays
     return training_inputs, training_outputs, testing_inputs, testing_outputs
@@ -40,7 +35,7 @@ def run(classifier, name):
     Run the classifier to calculate the accuracy score
     '''
     # Load the training data
-    train_inputs, train_outputs, test_inputs, test_outputs = load_data()
+    train_inputs, test_inputs,train_outputs, test_outputs = load_data()
 
     # Train the decision tree classifier
     classifier.fit(train_inputs, train_outputs)
@@ -70,7 +65,7 @@ if __name__ == '__main__':
 
     # Custom random forest classifier 1
     print "Best classifier for detecting phishing websites."
-    classifier = RandomForestClassifier(n_estimators=500, max_depth=15, n_jobs=-1, max_leaf_nodes=10000)
+    classifier = RandomForestClassifier(n_estimators=500, max_depth=15, max_leaf_nodes=10000)
     run(classifier, "Random forest")
 
     # Linear SVC classifier
