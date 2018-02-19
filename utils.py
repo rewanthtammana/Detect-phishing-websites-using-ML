@@ -13,21 +13,31 @@ def generate_data_set(url):
 
     data_set = []
 
+    # Converts the given URL into standard format
     if not re.match(r"^https?", url):
         url = "http://" + url
     
+    # Stores the response of the given URL
     try:
         response = requests.get(url)
     except:
         response = ""
 
+    # Extracts domain from the given URL
     domain = re.findall(r"://([^/]+)/?", url)[0]
 
+    # Requests all the information about the domain
     whois_response = requests.get("https://www.whois.com/whois/"+domain)
 
     rank_checker_response = requests.post("https://www.checkpagerank.net/index.php", {
         "name": domain
     })
+
+    # Extracts global rank of the website
+    try:
+        global_rank = int(re.findall(r"Global Rank: ([0-9]+)", rank_checker_response.text)[0])
+    except:
+        global_rank = -1
 
     # having_IP_Address
     try:
@@ -172,7 +182,7 @@ def generate_data_set(url):
 
     # web_traffic
     try:
-        if int(re.findall(r"Global Rank: ([0-9]+)", rank_checker_response.text)[0]) < 100000:
+        if global_rank > 0 and global_rank < 100000:
             data_set.append(-1)
         else:
             data_set.append(1)
@@ -181,7 +191,7 @@ def generate_data_set(url):
 
     # Page_Rank
     try:
-        if int(re.findall(r"Global Rank: ([0-9]+)", rank_checker_response.text)[0]) < 100000:
+        if global_rank > 0 and global_rank < 100000:
             data_set.append(-1)
         else:
             data_set.append(1)
@@ -190,7 +200,7 @@ def generate_data_set(url):
 
     # Google_Index
     try:
-        if int(re.findall(r"Global Rank: ([0-9]+)", rank_checker_response.text)[0]) < 100000:
+        if global_rank > 0 and global_rank < 100000:
             data_set.append(-1)
         else:
             data_set.append(1)
@@ -208,5 +218,7 @@ def generate_data_set(url):
 
     # Statistical_report
     data_set.append(-1)
+
+    print data_set
 
     return data_set
