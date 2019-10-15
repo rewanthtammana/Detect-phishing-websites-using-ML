@@ -1,3 +1,4 @@
+from __future__ import print_function
 from sklearn import tree
 from sklearn import svm
 from sklearn.ensemble import RandomForestClassifier
@@ -47,7 +48,7 @@ def run(classifier, name):
 
     # Print the accuracy (percentage of phishing websites correctly predicted)
     accuracy = 100.0 * accuracy_score(test_outputs, predictions)
-    print "Accuracy score using {} is: {}\n".format(name, accuracy)
+    print("Accuracy score using {} is: {}\n".format(name, accuracy))
 
 
 if __name__ == '__main__':
@@ -66,7 +67,7 @@ if __name__ == '__main__':
     # run(classifier, "Random forest")
 
     # Custom random forest classifier 1
-    print "Best classifier for detecting phishing websites."
+    print("Best classifier for detecting phishing websites.")
     classifier = RandomForestClassifier(n_estimators=500, max_depth=15, max_leaf_nodes=10000)
     run(classifier, "Random forest")
 
@@ -91,7 +92,7 @@ if __name__ == '__main__':
     # run(classifier, "NuSVC")
 
     # OneClassSVM classifier
-    print "Worst classifier for detecting phishing websites."
+    print("Worst classifier for detecting phishing websites.")
     classifier = svm.OneClassSVM()
     run(classifier, "One Class SVM")
 
@@ -117,4 +118,4 @@ if __name__ == '__main__':
         classifier = RandomForestClassifier(n_estimators=500, max_depth=15, max_leaf_nodes=10000)
         classifier.fit(train_inputs, train_outputs)
 
-        print classifier.predict(data_set)
+        print(classifier.predict(data_set))
