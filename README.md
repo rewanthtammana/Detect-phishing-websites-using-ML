@@ -1,6 +1,7 @@
 # Detect-phishing-websites-using-ML
 
-This project is a simple example which trains the model to predict phishing websites. Phishing websites are fake websites which try to gain the trust of users to steal private data of users.
+This project is a simple example which trains the model to predict phishing websites. Phishing websites are fake websites which try to gain the trust of users to steal private data of users.It detects fake websites by analyzing IPs, registered DNS, traffic on a website etc. This is achieved by many machine learning algorithms and tools. The best accuracy achieved so far is given below:
+
 * Best accuracy score - **97.0%** using Random forest method
 * Worst accuract score - **48.5%** using One class svm method
 
