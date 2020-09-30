@@ -1,6 +1,6 @@
 # Detect-phishing-websites-using-ML
 
-This project is a simple example which trains the model to predict phishing websites. Phishing websites are fake websites which try to gain the trust of users to steal private data of users.
+This project is a simple example which trains the model to predict phishing websites. A phishing website (sometimes called a "spoofed" site) tries to steal your account password or other confidential information by tricking you into believing you're on a legitimate website.
 * Best accuracy score - **97.0%** using Random forest method
 * Worst accuract score - **48.5%** using One class svm method
 
