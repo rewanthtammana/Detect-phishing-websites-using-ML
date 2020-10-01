@@ -1,12 +1,12 @@
-# Detect-phishing-websites-using-ML
+# Detect-Phishing-Websites-Using-ML
 
-This project is a simple example which trains the model to predict phishing websites. Phishing websites are fake websites which try to gain the trust of users to steal private data of users.
+This project is a simple example which trains the model to predict phishing websites. Phishing websites are fake websites which try to gain the trust of users to steal private data of users. its amazing.
 * Best accuracy score - **97.0%** using Random forest method
 * Worst accuract score - **48.5%** using One class svm method
 
 ### Requirements
-* Scikit-learn (sklearn)
-* Numpy
+1. Scikit-learn (sklearn)
+2. Numpy
 
 Requirements can be installed by executing `pip install -r requirements.txt`
 
@@ -14,8 +14,8 @@ Requirements can be installed by executing `pip install -r requirements.txt`
 The data set for training has been taken from [UCI archive](https://archive.ics.uci.edu/ml/machine-learning-databases/00327/Training%20Dataset.arff)
 
 ### Execution
-* `python classifier.py` to check the accuracy of the script.
-* `python classifier.py google.com` to check whether google.com is phishing website or not.
+1. `python classifier.py` to check the accuracy of the script.
+2. `python classifier.py google.com` to check whether google.com is phishing website or not.
 
 #### Parameters in dataset
 Each value in the dataset contains all these elements and all are seperated by a comma.
